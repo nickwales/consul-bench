@@ -1,12 +1,13 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"os"
 	"os/signal"
 	"sync"
 	"time"
+
+	"github.com/namsral/flag"
 
 	consul "github.com/hashicorp/consul/api"
 )
