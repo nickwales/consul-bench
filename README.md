@@ -32,7 +32,7 @@ If you want to immediatly deregister them, use `consul-bench -service my-service
 Environment variables can be used to configure consul-bench. For example:
 
 ```
-docker run -e CONSUL=http://<CONSUL_ADDR> -e SERVICE=consul-bench-test -e FLAPINTERVAL=1s -e REGISTER=10 -e WATCHERS=200 consul-bench:0.0.1 consul-bench
+docker run -e CONSUL=http://<CONSUL_ADDR> -e SERVICE=consul-bench-test -e FLAPINTERVAL=1s -e REGISTER=10 -e WATCHERS=20 consul-bench:0.0.1 consul-bench
 ```
 
 ## Full options
