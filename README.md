@@ -32,7 +32,7 @@ If you want to immediatly deregister them, use `consul-bench -service my-service
 Environment variables can be used to configure consul-bench. For example:
 
 ```
-docker run -e CONSUL=http://<CONSUL_ADDR> -e SERVICE=consul-bench-test -e FLAPINTERVAL=1s -e REGISTER=10 -e WATCHERS=20 consul-bench:0.0.1 consul-bench
+docker run -e CONSUL=http://<CONSUL_ADDR> -e SERVICE=consul-bench-test -e FLAP_INTERVAL=1s -e REGISTER=10 -e WATCHERS=20 quay.io/nickwales/consul-bench consul-bench
 ```
 
 ## Full options
@@ -62,6 +62,6 @@ Usage of consul-bench:
   -token string
     	ACL token
   -watchers int
-    	Number of concurrnet watchers on service (default 1)
+    	Number of concurrent watchers on service (default 1)
 
 ```
