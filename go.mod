@@ -3,7 +3,7 @@ module github.com/nickwales/consul-bench
 go 1.13
 
 require (
-	github.com/DataDog/datadog-go v3.4.1+incompatible // indirect
+	github.com/DataDog/datadog-go v3.4.1+incompatible
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
 	github.com/go-ole/go-ole v1.2.4 // indirect
 	github.com/hashicorp/consul v1.6.3

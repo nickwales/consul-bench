@@ -7,6 +7,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/DataDog/datadog-go/statsd"
 )
 
 type Stat struct {
@@ -14,7 +16,17 @@ type Stat struct {
 	Value float64
 }
 
-func DisplayStats(ch <-chan Stat, done chan struct{}) {
+func DisplayStats(ch <-chan Stat, done chan struct{}, ddAddr string) {
+
+	if len(ddAddr) == 0 {
+		ddAddr = "false"
+	}
+
+	statsd, err := statsd.New(ddAddr)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	type statC struct {
 		Stat
 		Count int
@@ -48,6 +60,11 @@ func DisplayStats(ch <-chan Stat, done chan struct{}) {
 		var s []string
 		for _, e := range entries {
 			s = append(s, fmt.Sprintf("%s: %.2f", e.Label, e.Value))
+
+			if ddAddr != "false" {
+				label := fmt.Sprintf("consulBench.%s", e.Label)
+				statsd.Gauge(label, e.Value, []string{"testing"}, 1)
+			}
 		}
 
 		log.Println(strings.Join(s, ", "))

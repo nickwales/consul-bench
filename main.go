@@ -28,6 +28,7 @@ func main() {
 	monitor := flag.Int("monitor", 0, "Consul PID")
 	runtime := flag.Duration("time", 0, "Time to run the benchmark")
 	latepc := flag.Float64("late-ratio", 0, "Ratio of late callers")
+	ddAddr := flag.String("dd-addr", "", "Datadog agent address")
 	flag.Parse()
 
 	if *token == "" {
@@ -90,7 +91,7 @@ func main() {
 
 	wg.Add(1)
 	go func() {
-		DisplayStats(stats, done)
+		DisplayStats(stats, done, *ddAddr)
 		wg.Done()
 	}()
 
