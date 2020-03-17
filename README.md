@@ -27,6 +27,14 @@ Will register 200 instances of "my-fake-service", make each instance flap every 
 Registered instances are not deregistered when exiting however they will be deregistered after 6 * -flap-interval (or 20m if no -flap-interval is given) using `deregister_critical_service_after`.
 If you want to immediatly deregister them, use `consul-bench -service my-service -deregister`. Note that this will deregister **all** instance of the service wether they were registered by consul-bench or not.
 
+### Docker example
+
+Environment variables can be used to configure consul-bench. For example:
+
+```
+docker run -e CONSUL=http://<CONSUL_ADDR> -e SERVICE=consul-bench-test -e FLAPINTERVAL=1s -e REGISTER=10 -e WATCHERS=200 consul-bench:0.0.1 consul-bench
+```
+
 ## Full options
 
 ```
